@@ -1,13 +1,13 @@
 pipeline {
   agent any
   stages {
-    stage('error') {
+    stage('build') {
       steps {
         echo 'Build'
       }
     }
 
-    stage('build') {
+    stage('build job') {
       steps {
         build(job: 'maven clean install', quietPeriod: 1)
       }
