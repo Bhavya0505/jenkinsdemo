@@ -1,44 +1,22 @@
 pipeline {
     agent any
+
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "maven 3.8.2"
+    }
+
     stages {
-        stage('Static Inspect') {
+        stage('Build') {
             steps {
-                bat 'mvn clean'
-            }
-        }
-        stage('Compile and Package') {
-            steps {
-                bat 'mvn clean'
-            }
-        }
-        stage('Unit Test') {
-            steps {
-                bat 'mvn clean'
-            }
-        }
-        stage('Component Test') {
-            steps {
-                bat 'mvn clean'
-            }
-        }
-        stage('Smoke/Acceptance Test') {
-            steps {
-                bat 'mvn clean'
-            }
-        }
-        stage('Deploy to Testing Env') {
-            steps {
-                bat 'mvn clean'
-            }
-        }
-        stage('Performance Test') {
-            steps {
-                bat 'mvn clean'
-            }
-        }
-        stage('Deploy to Production Env') {
-            steps {
-                bat 'mvn clean'
+                // Get some code from a GitHub repository
+                git 'https://github.com/Bhavya0505/jenkinsdemo.git'
+
+                // Run Maven on a Unix agent.
+                // sh "mvn -Dmaven.test.failure.ignore=true clean package"
+
+                // To run Maven on a Windows agent, use
+                bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
         }
     }
