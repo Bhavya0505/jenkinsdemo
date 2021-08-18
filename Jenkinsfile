@@ -1,20 +1,45 @@
 pipeline {
     agent any
-    triggers { pollSCM('* * * * *') }
     stages {
-        // implicit checkout stage
-
-        stage('Build') {
+        stage('Static Inspect') {
             steps {
-                bat 'mvn clean package'
+                bat 'mvn clean'
             }
         }
-    }
-    // post after stages, for entire pipeline, is also an implicit step albeit with explicit config here, unlike implicit checkout stage
-    post {
-        always {
-            junit '**/target/surefire-reports/TEST-*.xml'
-            archiveArtifacts 'target/*.jar'
+        stage('Compile and Package') {
+            steps {
+                bat 'mvn clean'
+            }
+        }
+        stage('Unit Test') {
+            steps {
+                bat 'mvn clean'
+            }
+        }
+        stage('Component Test') {
+            steps {
+                bat 'mvn clean'
+            }
+        }
+        stage('Smoke/Acceptance Test') {
+            steps {
+                bat 'mvn clean'
+            }
+        }
+        stage('Deploy to Testing Env') {
+            steps {
+                bat 'mvn clean'
+            }
+        }
+        stage('Performance Test') {
+            steps {
+                bat 'mvn clean'
+            }
+        }
+        stage('Deploy to Production Env') {
+            steps {
+                bat 'mvn clean'
+            }
         }
     }
 }
