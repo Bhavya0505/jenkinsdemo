@@ -25,6 +25,7 @@
         			<version>3.2.3</version>
             </plugin>
         </plugins>
+		<finalName>jenkinsdemo</finalName>
 	</build>
 
 	<dependencies>
@@ -45,7 +46,5 @@
 		</dependency> -->
 
 	</dependencies>
-	<build>
-	    <finalName>jenkinsdemo</finalName>
-	</build>
+
 </project>
